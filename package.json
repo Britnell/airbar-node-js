@@ -1,0 +1,26 @@
+{
+  "name": "airbar-node",
+  "version": "1.0.0",
+  "description": "node.js implementation for Neonode zForce air USB HID device",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Britnell/airbar-node-js.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Britnell/airbar-node-js/issues"
+  },
+  "homepage": "https://github.com/Britnell/airbar-node-js#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "node-hid": "^2.1.1",
+    "serialport": "^9.2.0",
+    "spotify-web-api-node": "^5.0.2"
+  }
+}
