@@ -21,14 +21,15 @@ var AirbarF = require('./airbar_hid.js');
 var airbarEvents = new events.EventEmitter();
 
 airbarEvents.on('EVENT', function(ev){
-	console.log(ev)
+	// console.log(ev)
 
 	switch(ev.type){
 		case '1F-BEGIN':
 			break;
 		case '1F-MOVE':
 			blob.pos = scale(ev.touch.x,0,652,0,50)
-			blob.width = scale_lim(ev.touch.y,50,400, 8,0.6 )
+			blob.width = scale_lim(ev.touch.y,50,400, 0.6,8 )
+			// blob.width = scale_lim(ev.touch.y,50,400, 8,0.6 )
 			// finger = Math.floor(val)			
 			break;
 		case '1F-END':
@@ -72,7 +73,7 @@ setInterval(()=>{
 		if(dif<blob.width)
 			val = 100
 		else 
-			val = scale_lim(dif,blob.width,blob.width*2,100,0)
+			val = scale_lim(dif,blob.width,blob.width*2,180,0)
 		// console.log(l,val)
 		pixel.set_pixel({r: val,g:0,b:0,w:0},l)
 	}

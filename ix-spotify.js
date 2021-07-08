@@ -12,6 +12,10 @@ const NLED = 50
 const Pixels = require('./pixels.js')
 const pixel = new Pixels({ LEDS: NLED, RGBW: true, })
 
+const ix_height = 16
+const release_height = 22
+
+
 // * Colours 
 let re = { r: 100, g:0, b:0, w:0 }
 let re_off = { r: 24, g:0, b:0, w:0 }
@@ -75,7 +79,7 @@ function draw_idle(){
 
 function check_idle(pos){
 	if(pos.x<=4.5 )
-	if(pos.y<6){
+	if(pos.y<ix_height){
 		console.log(` Player : ON `)
 		player.state = 'play'
 		gest.type = 'tapped'
@@ -84,7 +88,7 @@ function check_idle(pos){
 
 function check_off(pos){
 	if(pos.x<=3.5)
-	if(pos.y<6){
+	if(pos.y<ix_height){
 		console.log(` Player : STANDBY `)
 		player.state = 'idle'
 		gest.type = 'tapped'
@@ -123,7 +127,7 @@ function draw_playpause(){
 
 function check_playpause(pos){
 	if(pos.x>=playPause.beg-0.5 && pos.x<=playPause.end +0.5)
-	if(pos.y<5)
+	if(pos.y<ix_height)
 	{
 		console.log(` PLAY/PAUSE : ${playPause.state} `)
 		gest.type = 'tapped'
@@ -159,7 +163,7 @@ function draw_volume(){
 
 function check_volume(pos){
 	if(pos.x >= volume.beg -0.5 && pos.x<=volume.end +0.5 )
-	if(pos.y<5)
+	if(pos.y<ix_height)
 	{
 		// begin volume swipe
 		player.state = 'volume'
@@ -204,7 +208,7 @@ function draw_skipper(){
 
 function check_skipper(pos,delta){
 	if(pos.x>=skipper.beg -0.5 && pos.x<=skipper.end +0.5)
-	if(pos.y < 6)
+	if(pos.y < ix_height)
 	{
 		skipper.gest += delta.x
 	}
@@ -233,7 +237,7 @@ function check_1f_move(pos,delta){
 			player_control(pos,delta)
 			break;
 		case 'volume':
-			if(pos.y>12)
+			if(pos.y>release_height)
 				player.state = 'play'
 			else
 				control_vol(delta)
@@ -347,7 +351,7 @@ function pause(){
 }
 
 function play(){
-	spotifyApi.transferMyPlayback([deviceId],{play: true})
+	spotifyApi.transferMyPlayback([laptopId],{play: true})
 	.then(function(resp) {
 		console.log(' ~ Play! ');
 	}, 
@@ -366,7 +370,8 @@ function previous_track(){
 	.then(()=>{},(err)=>error_handler(err) );
 }
 
-const deviceId = 'c6e56cf6b68c07041768b06e2f29a439e7724b0e'
+const volumioId = 'c6e56cf6b68c07041768b06e2f29a439e7724b0e'
+const laptopId = '74cb0e77b7113343395faae4499c1845795ff3b5'
 
 function main(){
     console.log(' --> READY ')
@@ -377,7 +382,7 @@ function main(){
 		// Output items
 		let playing = data.body.is_playing
 		let device = data.body.device
-		console.log('pl:',playing)
+		console.log('pl:',playing,device)
 		playPause.state = playing?'play':'pause'
 
 	}, 
