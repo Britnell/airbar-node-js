@@ -6,6 +6,8 @@ this is for using the airbar (as i like to call it) with node.js on raspberry pi
 
 - [Neonode zForce Air A.K.A. Airbar](https://neonode.com/products-and-solutions/touch-sensor-modules)
 - [sold on digikey](https://www.digikey.com/en/products/filter/evaluation-boards-sensors/795?s=N4IgTCBcDaIHYFMD2ckBMEgLoF8g)
+- I'm using Neopixel for feedback
+- See some videos of these interactions [on my blog](https://workout.wonday.eu/2021/07/08/air-gesture-interfaces/)
 
 
 # Guide
